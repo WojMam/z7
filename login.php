@@ -23,14 +23,20 @@
 		{
 			if($rekord['pass']==$pass)
 			{
-				$logged_in = TRUE;
-				// $add_info = "INSERT INTO logowanie_klienci (imie, nazwisko, ip) VALUES ('".$rekord['imie']."', '".$rekord['nazwisko']."', '".$ip."')";
-				// mysqli_query($link, $add_info);
-				setcookie("logged_in", $logged_in, time()+(60*60*1));
-				setcookie("user", $user, time()+(60*60*1));
-				setcookie("pass", $pass, time()+(60*60*1));
-				header('Location: http://serwer1615599.home.pl/z7/add_info.php');
-				exit();
+				if($rekord['fails']<3)
+				{
+					$logged_in = TRUE;
+					setcookie("logged_in", $logged_in, time()+(60*60*1));
+					setcookie("user", $user, time()+(60*60*1));
+					setcookie("pass", $pass, time()+(60*60*1));
+					header('Location: http://serwer1615599.home.pl/z7/add_info.php');
+					exit();
+				}
+				else
+				{
+					header('Location: http://serwer1615599.home.pl/z7/account_blocked.html');
+					exit();
+				}
 			}
 			else
 			{
