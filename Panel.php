@@ -2,6 +2,7 @@
 $user = $_COOKIE['user'];
 $pass =$_COOKIE['pass'];
 //$logged_in =$_COOKIE['logged_in'];
+$cur_dir =$_COOKIE['cur_dir'];
 
 if(!isset($_COOKIE['logged_in']))
 {
@@ -10,9 +11,16 @@ if(!isset($_COOKIE['logged_in']))
 }
 else
 {
-	$dir    = 'cat/'.$user;
-	$files1 = scandir($dir);
-	$scanned_directory = array_diff(scandir($dir), array('..', '.'));
+	if(!isset($_COOKIE['cur_dir']))
+	{
+		$cur_dir    = 'cat/'.$user;
+	}
+	
+	//$files1 = scandir($cur_dir);
+	//$scanned_directory = array_diff(scandir($cur_dir), array('..', '.'));
+	
+	
+	$scan = scandir($cur_dir);
 ?>
 
 	<HTML>
@@ -55,11 +63,36 @@ else
 			
 			<div class="flex-container">
 				<div class="flex-item"  style="width: 90%;">
-					Twoje pliki: <br>
+					Twoje pliki: <br><br>
 					<?php 
-						echo '<pre>';
-						print_r($scanned_directory);
-						echo '</pre>';
+						foreach($scan as $file)
+						{
+							if (!is_dir($cur_dir."/$file"))
+							{
+								echo $file."<br>";
+							}
+						}
+						// echo '<pre>';
+						// print_r($scanned_directory);
+						// echo '</pre>';
+					?>
+				</div>
+			</div>
+			
+			<div class="flex-container">
+				<div class="flex-item"  style="width: 90%;">
+					Twoje katalogi: <br><br>
+					<?php 
+						foreach($scan as $file)
+						{
+							if (is_dir($cur_dir."/$file"))
+							{
+								echo $file."<br>";
+							}
+						}
+						// echo '<pre>';
+						// print_r($scanned_directory);
+						// echo '</pre>';
 					?>
 				</div>
 			</div>
