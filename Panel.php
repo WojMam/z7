@@ -64,36 +64,65 @@ else
 			<div class="flex-container">
 				<div class="flex-item"  style="width: 90%;">
 					Twoje pliki: <br><br>
+					<table>
 					<?php 
 						foreach($scan as $file)
 						{
 							if (!is_dir($cur_dir."/$file"))
-							{
-								echo $file."<br>";
-							}
+							{ ?>
+								<tr>
+									<td><?php echo $file; ?> </td>
+									<td>
+										<form action="delete.php" method="post">
+										  <button name="delete" type="submit" value="<?php echo $file ?>">Usuń</button>
+										</form> 
+									</td>
+									<td>
+										<form action="download.php" method="post">
+										  <button name="download" type="submit" value="<?php echo $file ?>">Pobierz</button>
+										</form> 
+									</td>
+								</tr>
+							<?php }
 						}
-						// echo '<pre>';
-						// print_r($scanned_directory);
-						// echo '</pre>';
 					?>
+					</table>
 				</div>
 			</div>
 			
 			<div class="flex-container">
 				<div class="flex-item"  style="width: 90%;">
 					Twoje katalogi: <br><br>
+					<table>
 					<?php 
-						foreach($scan as $directoty)
+						foreach($scan as $directory)
 						{
-							if (is_dir($cur_dir."/$directoty"))
-							{
-								echo $directoty."<br>";
-							}
+							if ($directory === '.' or $directory === '..') continue;
+							if (is_dir($cur_dir."/$directory"))
+							{ ?>
+								<tr>
+									<td><?php echo $directory; ?> </td>
+									<td>
+										<form action="delete.php" method="post">
+										  <button name="delete" type="submit" value="<?php echo $directory ?>">Usuń</button>
+										</form> 
+									</td>
+									<td>
+										<form action="download.php" method="post">
+										  <button name="download" type="submit" value="<?php echo $directory ?>">Pobierz</button>
+										</form> 
+									</td>
+									<td>
+										<form action="enter_cat.php" method="post">
+										  <button name="enter_cat" type="submit" value="<?php echo $directory ?>">Wejdź</button>
+										</form> 
+									</td>
+								</tr>
+							<?php }
 						}
-						// echo '<pre>';
-						// print_r($scanned_directory);
-						// echo '</pre>';
 					?>
+					</table>
+					
 				</div>
 			</div>
 			
@@ -102,4 +131,3 @@ else
 	</HTML>
 
 <?php } ?>
-
