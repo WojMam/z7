@@ -44,6 +44,16 @@ else
 			</div>
 			
 			<div class="flex-container">
+				<div class="flex-item" style="width: 20%;">
+					Utwórz katalog (max 15 znaków): <br><br>
+					<form method="post" action="add_cat.php">
+						Nazwa katalogu: <input type="text" name="new_cat" maxlength="15" size="20"><br>
+						<br><input type="submit" value="Utwórz"/>
+					</form>
+				</div>
+			</div>
+			
+			<div class="flex-container">
 				<div class="flex-item"  style="width: 90%;">
 					Twoje pliki: <br>
 					<?php 
@@ -59,3 +69,4 @@ else
 	</HTML>
 
 <?php } ?>
+
