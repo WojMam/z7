@@ -1,44 +1,42 @@
 <?php
 	$user=$_POST['user'];
 	$pass=$_POST['pass'];
-	//$checked = FALSE;
-	$ip = $_SERVER["REMOTE_ADDR"];
+	$logged_in = FALSE;
 	
-	$link = mysqli_connect("serwer1615599.home.pl/sql", "21746911_z6","lab19936", "21746911_z6");
+	$link = mysqli_connect("serwer1615599.home.pl/sql", "21746911_z7","lab19937", "21746911_z7");
 	if(!$link) 
 	{ 
 		echo"Błąd: ". mysqli_connect_errno()." ".mysqli_connect_error();
 	}
 	
-	$result = mysqli_query($link, "SELECT * FROM klienci WHERE user='$user'");
+	$result = mysqli_query($link, "SELECT * FROM users WHERE user='$user'");
 	$rekord = mysqli_fetch_array($result);
 	while(true)
 	{
 		if(!$rekord)
 		{
-			break; 
+			header('Location: http://serwer1615599.home.pl/z7/fail.php');
+			exit();
+			//break; 
 		}
 		else
 		{
 			if($rekord['pass']==$pass)
 			{
-				// $_SESSION ["user"] = $rekord['user'];
-				// $_SESSION ["imie"] = $rekord['imie'];
-				// $_SESSION ["nazwisko"] = $rekord['nazwisko'];
-				// $_SESSION ["id"] = $rekord['id'];
-				// $_SESSION ["logged"] = TRUE;
-				// $checked = TRUE;
-				// $user_type = "customer";
+				$logged_in = TRUE;
 				// $add_info = "INSERT INTO logowanie_klienci (imie, nazwisko, ip) VALUES ('".$rekord['imie']."', '".$rekord['nazwisko']."', '".$ip."')";
 				// mysqli_query($link, $add_info);
-				setcookie("user", $login, time()+(60*60*1));
+				setcookie("logged_in", $logged_in, time()+(60*60*1));
+				setcookie("user", $user, time()+(60*60*1));
 				setcookie("pass", $pass, time()+(60*60*1));
-				header('Location: http://serwer1615599.home.pl/z6/panel_klienta.php');
+				header('Location: http://serwer1615599.home.pl/z7/add_info.php');
 				exit();
 			}
 			else
 			{
-				break;
+				header('Location: http://serwer1615599.home.pl/z7/add_fail.php');
+				exit();
+				//break;
 			}
 		}
 	break;
