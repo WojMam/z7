@@ -21,6 +21,8 @@
 		$add_user = "INSERT INTO users (user, pass, fails) VALUES ('".$user."', '".$pass."', '0')";
 		mysqli_query($link, $add_user);
 		
+		mkdir("cat/".$user, 0700);
+		
 		header('Location: http://serwer1615599.home.pl/z7/index.html');
 		exit();
 	}

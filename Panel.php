@@ -35,8 +35,11 @@ else
 
 			<div class="flex-container">
 				<div class="flex-item" style="width: 20%;">
-					Wyślij plik <br>
-					
+					Wyślij plik <br><br>
+					<form action="upload.php" method="post" enctype="multipart/form-data">
+						<input type="file" name="fileToUpload" id="fileToUpload">
+						<input type="submit" value="Wrzuć" name="submit">
+					</form>
 				</div>
 			</div>
 			
