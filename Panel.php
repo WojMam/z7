@@ -10,6 +10,9 @@ if(!isset($_COOKIE['logged_in']))
 }
 else
 {
+	$dir    = 'cat/'.$user;
+	$files1 = scandir($dir);
+	$scanned_directory = array_diff(scandir($dir), array('..', '.'));
 ?>
 
 	<HTML>
@@ -40,7 +43,7 @@ else
 			<div class="flex-container">
 				<div class="flex-item"  style="width: 90%;">
 					Twoje pliki: <br>
-					
+					<?php print_r($scanned_directory); ?>
 				</div>
 			</div>
 			
