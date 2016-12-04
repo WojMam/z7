@@ -17,7 +17,6 @@
 		{
 			header('Location: http://serwer1615599.home.pl/z7/fail.html');
 			exit();
-			//break; 
 		}
 		else
 		{
@@ -43,7 +42,6 @@
 				setcookie("user", $user, time()+(60*60*1));
 				header('Location: http://serwer1615599.home.pl/z7/add_fail.php');
 				exit();
-				//break;
 			}
 		}
 	break;

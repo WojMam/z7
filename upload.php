@@ -1,5 +1,4 @@
 <?php
-// $dir = "z7/cat/".$_COOKIE['user']."/";
 $dir = "z7/".$_COOKIE['cur_dir']."/";
 if (is_uploaded_file($_FILES['plik']['tmp_name']))
 {

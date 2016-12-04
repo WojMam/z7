@@ -21,7 +21,6 @@ else
 		$cur_back    = "FALSE";
 		setcookie("cur_back", $cur_back, time()+(60*60*1));
 	}
-	echo $cur_dir;
 	$scan = scandir($cur_dir);
 ?>
 
