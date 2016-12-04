@@ -83,11 +83,11 @@ else
 				<div class="flex-item"  style="width: 90%;">
 					Twoje katalogi: <br><br>
 					<?php 
-						foreach($scan as $file)
+						foreach($scan as $directoty)
 						{
-							if (is_dir($cur_dir."/$file"))
+							if (is_dir($cur_dir."/$directoty"))
 							{
-								echo $file."<br>";
+								echo $directoty."<br>";
 							}
 						}
 						// echo '<pre>';
