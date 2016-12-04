@@ -10,7 +10,7 @@
 	$add_info = "INSERT INTO logi (user, status) VALUES ('".$user."', 'Poprawne')";
 	mysqli_query($link, $add_info);
 	
-	$query = "UPDATE users SET fails='0' WHERE user=".$user;
+	$query = "UPDATE users SET fails='0' WHERE user='".$user."'";
 	mysqli_query($link, $query);
 
 	header('Location: http://serwer1615599.home.pl/z7/panel.php');
