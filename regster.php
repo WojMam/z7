@@ -11,7 +11,7 @@
 	$result = mysqli_query($link, "SELECT * FROM users WHERE user='$user'");
 	$rekord = mysqli_fetch_array($result);
 
-	if(!$rekord)
+	if($rekord)
 	{
 		header('Location: http://serwer1615599.home.pl/z7/reg_fail.html');
 		exit();
@@ -20,5 +20,8 @@
 	{
 		$add_user = "INSERT INTO users (user, pass, fails) VALUES ('".$user."', '".$pass."', '0')";
 		mysqli_query($link, $add_user);
+		
+		header('Location: http://serwer1615599.home.pl/z7/index.html');
+		exit();
 	}
 ?>
