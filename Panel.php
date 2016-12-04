@@ -1,8 +1,8 @@
 <?php
 $user = $_COOKIE['user'];
 $pass =$_COOKIE['pass'];
-//$logged_in =$_COOKIE['logged_in'];
 $cur_dir =$_COOKIE['cur_dir'];
+$cur_back =$_COOKIE['cur_back'];
 
 if(!isset($_COOKIE['logged_in']))
 {
@@ -14,12 +14,14 @@ else
 	if(!isset($_COOKIE['cur_dir']))
 	{
 		$cur_dir    = 'cat/'.$user;
+		setcookie("cur_dir", $cur_dir, time()+(60*60*1));
 	}
-	
-	//$files1 = scandir($cur_dir);
-	//$scanned_directory = array_diff(scandir($cur_dir), array('..', '.'));
-	
-	
+	if(!isset($_COOKIE['cur_back']))
+	{
+		$cur_back    = "FALSE";
+		setcookie("cur_back", $cur_back, time()+(60*60*1));
+	}
+	echo $cur_dir;
 	$scan = scandir($cur_dir);
 ?>
 
@@ -74,7 +76,7 @@ else
 									<td><?php echo $file; ?> </td>
 									<td>
 										<form action="delete.php" method="post">
-										  <button name="delete" type="submit" value="<?php echo $file ?>">Usuń</button>
+										  <button name="delete_file" type="submit" value="<?php echo $file ?>">Usuń</button>
 										</form> 
 									</td>
 									<td>
@@ -104,12 +106,7 @@ else
 									<td><?php echo $directory; ?> </td>
 									<td>
 										<form action="delete.php" method="post">
-										  <button name="delete" type="submit" value="<?php echo $directory ?>">Usuń</button>
-										</form> 
-									</td>
-									<td>
-										<form action="download.php" method="post">
-										  <button name="download" type="submit" value="<?php echo $directory ?>">Pobierz</button>
+										  <button name="delete_cat" type="submit" value="<?php echo $directory ?>">Usuń</button>
 										</form> 
 									</td>
 									<td>
@@ -121,10 +118,26 @@ else
 							<?php }
 						}
 					?>
-					</table>
+					</table><br><br>
 					
 				</div>
 			</div>
+			
+			<div class="flex-container">
+				<div class="flex-item"  style="width: 90%;">
+					<?php
+					if($_COOKIE['cur_back']=="TRUE")
+					{ ?>
+						Cofnij się do głównego katalogu:
+						<form action="back_cat.php" method="post">
+							<button name="back_cat" type="submit" value="<?php echo $directory ?>">Cofnij</button>
+						</form> 
+					<?php 
+					}
+					?>
+				</div>
+			</div>
+
 			
 		</BODY>
 		
