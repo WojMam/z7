@@ -36,9 +36,9 @@ else
 			<div class="flex-container">
 				<div class="flex-item" style="width: 20%;">
 					Wyślij plik <br><br>
-					<form action="upload.php" method="post" enctype="multipart/form-data">
-						<input type="file" name="fileToUpload" id="fileToUpload">
-						<input type="submit" value="Wrzuć" name="submit">
+					<form action="upload.php" method="POST" ENCTYPE="multipart/form-data">
+						<input type="file" name="plik"/>
+						<input type="submit" value="Wyślij"/>
 					</form>
 				</div>
 			</div>
@@ -46,7 +46,11 @@ else
 			<div class="flex-container">
 				<div class="flex-item"  style="width: 90%;">
 					Twoje pliki: <br>
-					<?php print_r($scanned_directory); ?>
+					<?php 
+						echo '<pre>';
+						print_r($scanned_directory);
+						echo '</pre>';
+					?>
 				</div>
 			</div>
 			
