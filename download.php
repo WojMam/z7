@@ -2,7 +2,7 @@
 $file_name=$_POST['download'];
 $cur_dir =$_COOKIE['cur_dir'];
 
-$dir_download="/".$cur_dir."/".$file_name;
+$dir_download=$cur_dir."/".$file_name;
 
 if (file_exists($dir_download)) {
     header('Content-Description: File Transfer');
